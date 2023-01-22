@@ -57,5 +57,14 @@ except:
 
 #Now that we have the stock prices a day before the expiration we can add it in as a new column to our existing datafram
 #df1, note the API was not able to retrieve prices for some of the tickers, we will delete those rows for now
-print(price_dict)
+print(price_dict['AAOI'].iloc[0][0])
 
+keys = list(price_dict.keys())
+keys.sort()
+price_array = []
+
+for item in keys:
+    if type(price_dict[item]) == str:
+        price_array.append(-100)
+    else:
+        price_array.append(price_dict[item].iloc[0][0])
